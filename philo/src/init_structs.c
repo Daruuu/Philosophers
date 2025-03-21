@@ -6,7 +6,7 @@
 /*   By: dasalaza <dasalaza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 13:12:41 by dasalaza          #+#    #+#             */
-/*   Updated: 2025/03/21 16:23:37 by dasalaza         ###   ########.fr       */
+/*   Updated: 2025/03/21 21:12:39 by dasalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,18 @@ int	init_threads(void)
 }
 */
 
-int	ft_atoi(char *str)
+int	fill_args_into_table(int ac, char **av, t_table *table)
+{
+	table->num_philos = ft_atoi(av[1]);
+	table->time_to_die = ft_atoi(av[2]);
+	table->time_to_eat = ft_atoi(av[3]);
+	table->time_to_sleep = ft_atoi(av[4]);
+	if (ac == 6)
+		table->number_of_times_each_philo_must_sleep = ft_atoi(av[5]);
+	return (0);
+}
+
+int	ft_atoi(const char *str)
 {
 	unsigned int	i;
 	int				result;
@@ -26,6 +37,7 @@ int	ft_atoi(char *str)
 
 	i = 0;
 	sign = 1;
+	result = 0;
 	while (str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
 		i ++;
 	if (str[i] == '-' || str[i] == '+')

@@ -6,7 +6,7 @@
 /*   By: dasalaza <dasalaza@student.42barcelona.c>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:59:50 by dasalaza          #+#    #+#             */
-/*   Updated: 2025/03/21 13:49:00 by dasalaza         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:09:24 by dasalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,19 @@
 
 int	main(int ac, char **av)
 {
-	if (ac != 5)
+	if (ac < 5 || ac > 6)
+	{
 		printf("invalid number of arguments :(\n");
+		printf("Need 4-5 args\n1: number of philosophers\n");
+		printf("2: time to die\n3. time to eat\n4. time to sleep\n");
+		printf("[optional] number of times each plhilopspher must eat\n");
+		return (1);
+	}
+	if (check_valid_args(ac, av) == 1)
+		printf("Error: invalid input(solo integers :(\n");
 	else
 	{
-		if (check_valid_args(ac, av) == 1)
-			printf("Error: invalid input :(\n");
-		else
-		{
-			printf("valid input\n");
-		}
+		printf("valid input\n");
 	}
 	return (0);
 }
