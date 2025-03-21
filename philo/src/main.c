@@ -6,11 +6,11 @@
 /*   By: dasalaza <dasalaza@student.42barcelona.c>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:59:50 by dasalaza          #+#    #+#             */
-/*   Updated: 2025/03/20 14:38:14 by dasalaza         ###   ########.fr       */
+/*   Updated: 2025/03/21 13:49:00 by dasalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/philosophers.h"
+#include "../includes/philosophers.h"
 // Created by daruuu on 3/18/25.
 
 /**

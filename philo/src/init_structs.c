@@ -6,15 +6,17 @@
 /*   By: dasalaza <dasalaza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 13:12:41 by dasalaza          #+#    #+#             */
-/*   Updated: 2025/03/20 14:32:01 by dasalaza         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:23:37 by dasalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
+/*
 int	init_threads(void)
 {
 }
+*/
 
 int	ft_atoi(char *str)
 {

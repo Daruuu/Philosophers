@@ -1,26 +1,35 @@
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g --fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread -pthread
 
 RM = rm -rf
-PHILO_H = includes/philosophers.h
 OBJ_DIR = obj
+SRC_DIR = src
+INCLUDE_DIR = includes
 
-SRC = main.c
+SRC = $(SRC_DIR)/main.c \
+      $(SRC_DIR)/init_structs.c
 
-OBJ = $(pathsubst $(SRC)/%.c, $(OBJ_DIR)/%.o)
+OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -pthread -o $(NAME)
+# Compile of files .c to .o in the directory obj
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(NAME): $(OBJ) Makefile
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	rm -rf $(OBJ_DIR)
+	$(RM) $(OBJ_DIR)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re 
+.PHONY: all clean fclean re
