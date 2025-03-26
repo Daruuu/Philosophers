@@ -12,11 +12,17 @@
 
 #include "../includes/philosophers.h"
 
-/*
-int	init_threads(void)
+// int	init_threads(t_table *table, int ac, char **av)
+int	init_table(t_table *table, int ac, char **av)
 {
+	table->num_philos = ft_atoi(av[1]);
+	table->time_to_die = ft_atoi(av[2]);
+	table->time_to_eat = ft_atoi(av[3]);
+	table->time_to_sleep = ft_atoi(av[4]);
+	if (ac == 6)
+		table->number_of_times_each_philo_must_sleep = ft_atoi(av[5]);
+	return (0);
 }
-*/
 
 int	fill_args_into_table(int ac, char **av, t_table *table)
 {
@@ -32,7 +38,7 @@ int	fill_args_into_table(int ac, char **av, t_table *table)
 int	ft_atoi(const char *str)
 {
 	unsigned int	i;
-	int				result;
+	long			result;
 	int				sign;
 
 	i = 0;
@@ -56,7 +62,7 @@ int	ft_atoi(const char *str)
 			return (-1);
 		i ++;
 	}
-	return (sign * result);
+	return (sign * (int) result);
 }
 
 int	check_valid_args(int ac, char **av)
@@ -64,7 +70,7 @@ int	check_valid_args(int ac, char **av)
 	int	i;
 	int	tmp;
 
-	i = 0;
+	i = 1;
 	while (i < ac)
 	{
 		tmp = (int) ft_atoi(av[i]);
