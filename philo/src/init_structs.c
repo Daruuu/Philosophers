@@ -12,26 +12,54 @@
 
 #include "../includes/philosophers.h"
 
-// int	init_threads(t_table *table, int ac, char **av)
+void	init_philosophers(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->total_philos)
+	{
+		table->philosophers[i].id = i;
+		table->philosophers[i].total_philos = table->total_philos;
+		table->philosophers[i].time_to_die = table->time_to_die;
+		table->philosophers[i].
+		table->philosophers[i].
+		table->philosophers[i].
+		table->philosophers[i].
+		table->philosophers[i].
+	}
+
+}
+
 int	init_table(t_table *table, int ac, char **av)
 {
-	table->num_philos = ft_atoi(av[1]);
+	table->total_philos = ft_atoi(av[1]);
 	table->time_to_die = ft_atoi(av[2]);
 	table->time_to_eat = ft_atoi(av[3]);
 	table->time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
-		table->number_of_times_each_philo_must_sleep = ft_atoi(av[5]);
+		table->meals_required = ft_atoi(av[5]);
+	table->simulation_ended = 0;
+	table->philosophers_fed = 0;
+	table->forks = malloc(table->total_philos * sizeof(pthread_mutex_t));
+	table->philosophers = malloc(table->total_philos * sizeof(t_philo));
+	table->threads = malloc(table->total_philos * sizeof(pthread_t));
+	if (!table->forks || !table->philosophers || !table->threads)
+	{
+		printf("Error: malloc in init_table\n");
+		return (1);
+	}
 	return (0);
 }
 
-int	fill_args_into_table(int ac, char **av, t_table *table)
+int	fill_args_into_simulation(int ac, char **av, t_table *table)
 {
-	table->num_philos = ft_atoi(av[1]);
+	table->total_philos = ft_atoi(av[1]);
 	table->time_to_die = ft_atoi(av[2]);
 	table->time_to_eat = ft_atoi(av[3]);
 	table->time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
-		table->number_of_times_each_philo_must_sleep = ft_atoi(av[5]);
+		table->meals_required = ft_atoi(av[5]);
 	return (0);
 }
 
