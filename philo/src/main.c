@@ -24,13 +24,14 @@
 
 int	main(int ac, char **av)
 {
+	t_table		table;
+
 	if (ac < 5 || ac > 6)
 	{
 		printf("invalid number of arguments :(\n");
-		printf("Need 4-5 args\n1: number of philosophers (milliseconds)\n");
-		printf("2: time to die (millisec)\n3. time to eat (millisec)\n");
-		printf("4. time to sleep (millisec)\n");
-		printf("[5: optional] number of times each philosopher must eat\n");
+		printf("Need 4-5 args\n1: number of philosophers \n");
+		printf("2: time to die\n3. time to eat\n4. time to sleep\n");
+		printf("5: [optional] number of times each philosopher must eat\n");
 		return (1);
 	}
 	if (check_valid_args(ac, av) == 1)
@@ -38,7 +39,7 @@ int	main(int ac, char **av)
 	else
 	{
 		printf("valid input\n");
-
+		init_table(&table, ac, av);
 	}
 	return (0);
 }

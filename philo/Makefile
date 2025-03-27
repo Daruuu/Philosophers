@@ -8,7 +8,10 @@ SRC_DIR = src
 INCLUDE_DIR = includes
 
 SRC = $(SRC_DIR)/main.c \
-      $(SRC_DIR)/init_structs.c
+      $(SRC_DIR)/init_structs.c \
+      $(SRC_DIR)/get_time.c \
+      $(SRC_DIR)/check_arguments.c \
+      $(SRC_DIR)/print.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

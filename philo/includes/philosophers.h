@@ -25,15 +25,15 @@ typedef struct s_philo
 	int					id;
 	int					total_philos;
 	int					time_to_die;
-	int					eat_time;
-	int					sleep_time;
+	int					time_to_eat;
+	int					time_to_sleep;
 	int					meals_required;
 	int					meals_eaten;
 	int					time_of_death;
 	pthread_mutex_t		*right_fork;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		death_mutex;
-	struct s_table	*simulation;
+	struct s_table		*table;
 }		t_philo;
 
 typedef struct s_table
@@ -54,7 +54,15 @@ typedef struct s_table
 	pthread_mutex_t	philosophers_fed_mutex;
 }		t_table;
 
-int	check_valid_args(int ac, char **av);
-int	ft_atoi(const char *str);
+//	init_structs.c
+void	init_philos(t_table *table);
+int		init_table(t_table *table, int ac, char **av);
+
+//	check_arguments.c
+int		check_valid_args(int ac, char **av);
+int		ft_atoi(const char *str);
+
+//	get_time.c
+int		get_current_time_ms(void);
 
 #endif
