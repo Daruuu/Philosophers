@@ -39,6 +39,42 @@ void	init_philos(t_table *table)
 	table->simulation_start_time = get_current_time_ms();
 }
 
+void	init_mutex(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->total_philos)
+	{
+		pthread_mutex_init(&(table->forks[i]), NULL);
+		i ++;
+	}
+	pthread_mutex_init(&(table->print_mutex), NULL);
+	pthread_mutex_init(&(table->philos_full_mutex), NULL);
+	pthread_mutex_init(&(table->end_mutex), NULL);
+}
+
+/**
+ *
+ * @param table iterate throught table->total_philos
+ * and use pthread_create para iterar por N (total_philos) and create
+ * @return  true or false
+ */
+int	init_threads(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->total_philos)
+	{
+		if (pthread_create(&(table->threads[i]), NULL, routine_philo, \
+			&(table->philosophers[i])) != 0)
+			return (1);
+		i ++;
+	}
+	return (0);
+}
+
 int	init_table(t_table *table, int ac, char **av)
 {
 	table->total_philos = ft_atoi(av[1]);
@@ -57,5 +93,15 @@ int	init_table(t_table *table, int ac, char **av)
 		printf("Error: malloc in init_table\n");
 		return (1);
 	}
+	// init mutex and init philos
+	init_mutex(table);
+	init_philos(table);
+	if (init_threads(table) != 0)
+	{
+		return (printf("Error: init threads in init_data\n"), 1);
+	}
 	return (0);
 }
+
+
+

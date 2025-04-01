@@ -20,6 +20,8 @@
 # include <limits.h>
 # include <sys/time.h>
 
+# define ONE_PHILO_STR "has taken left fork"
+
 typedef struct s_philo
 {
 	int					id;
@@ -50,8 +52,8 @@ typedef struct s_table
 	struct s_philo	*philosophers;
 	pthread_t		*threads;
 	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	simulation_end_mutex;
-	pthread_mutex_t	philosophers_fed_mutex;
+	pthread_mutex_t	end_mutex;
+	pthread_mutex_t	philos_full_mutex;
 }		t_table;
 
 //	init_structs.c
@@ -64,5 +66,8 @@ int		ft_atoi(const char *str);
 
 //	get_time.c
 int		get_current_time_ms(void);
+
+//	print.c
+void	print_states_philos(t_philo *philo, char *str_state);
 
 #endif

@@ -12,6 +12,7 @@ add_executable(Philosophers
         philo/src/get_time.c
         philo/src/check_arguments.c
         philo/src/print.c
+        philo/src/routine_philos.c
 )
 
 target_compile_options(Philosophers PRIVATE -pthread)
