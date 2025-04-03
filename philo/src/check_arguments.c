@@ -12,7 +12,7 @@ int	fill_args_into_table(int ac, char **av, t_table *table)
 	table->time_to_eat = ft_atoi(av[3]);
 	table->time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
-		table->meals_required = ft_atoi(av[5]);
+		table->meals_count = ft_atoi(av[5]);
 	return (0);
 }
 */

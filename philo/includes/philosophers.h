@@ -21,6 +21,11 @@
 # include <sys/time.h>
 
 # define ONE_PHILO_STR "has taken left fork"
+# define LEFT_FORK_STR "has taken left fork"
+# define RIGHT_FORK_STR "has taken right fork"
+# define EATING "is eating"
+# define SLEEPING "is sleeping"
+# define THINKING "is thinking"
 
 typedef struct s_philo
 {
@@ -29,11 +34,11 @@ typedef struct s_philo
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
-	int					meals_required;
-	int					meals_eaten;
+	int					meals_count;
+	int					meals_consumed;
 	int					time_of_death;
-	pthread_mutex_t		*right_fork;
-	pthread_mutex_t		*left_fork;
+	pthread_mutex_t		*fork_right;
+	pthread_mutex_t		*fork_left;
 	pthread_mutex_t		death_mutex;
 	struct s_table		*table;
 }		t_philo;
@@ -44,7 +49,7 @@ typedef struct s_table
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				meals_required;
+	int				meals_count;
 	int				simulation_ended;
 	int				philosophers_fed;
 	int				simulation_start_time;
@@ -69,5 +74,8 @@ int		get_current_time_ms(void);
 
 //	print.c
 void	print_states_philos(t_philo *philo, char *str_state);
+int		ft_usleep(int milliseconds);
 
+//	routine_philos.c
+void	*routine_philo(void * table_philo);
 #endif
