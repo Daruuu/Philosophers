@@ -24,15 +24,14 @@ void	eat_philos(t_philo *philo)
 	print_states_philos(philo, RIGHT_FORK_STR);
 	print_states_philos(philo, EATING);
 	pthread_mutex_lock(&(philo->death_mutex));
-	philo->time_of_death = get_current_time_ms() + philo->time_of_death;
+	philo->time_of_death = get_current_time_ms() + philo->time_to_die;
 	pthread_mutex_unlock(&(philo->death_mutex));
-	// ft_usleep();
-	philo->meals_consumed = philo->meals_consumed++;
-
-	if (philo->meals_consumed >= 0 && philo->meals_count == philo->meals_consumed)
+	ft_usleep(philo->time_to_eat);
+	philo->meals_consumed = philo->meals_consumed + 1;
+	if (philo->meals_count >= 0 && philo->meals_count == philo->meals_consumed)
 	{
 		pthread_mutex_lock(&(philo->table->philos_full_mutex));
-		philo->table->philos_full_mutex = philo->table->philos_full_mutex;
+		philo->table->philos_fed_full = philo->table->philos_fed_full + 1;
 		pthread_mutex_unlock(&(philo->table->philos_full_mutex));
 	}
 	pthread_mutex_unlock(philo->fork_left);
@@ -61,9 +60,9 @@ void	*routine_philo(void * table_philo)
 	philo = (t_philo *) table_philo;
 	end_flag = 0;
 	pthread_mutex_lock(&(philo->death_mutex));
-	philo->time_of_death = get_current_time_ms() + philo->time_of_death;
+	philo->time_of_death = get_current_time_ms() + philo->time_to_die;
 	pthread_mutex_unlock(&(philo->death_mutex));
-	if (one_philosopher(philo) == 0)
+	if (one_philosopher(philo))
 		return (NULL);
 	if (philo->id % 2 == 1)
 		ft_usleep(philo->time_to_eat / 2);
@@ -74,8 +73,36 @@ void	*routine_philo(void * table_philo)
 		ft_usleep(philo->time_to_sleep);
 		print_states_philos(philo, THINKING);
 		pthread_mutex_lock(&(philo->table->end_mutex));
-		end_flag = philo->table->simulation_ended;
+		end_flag = philo->table->end_simulation;
 		pthread_mutex_unlock(&(philo->table->end_mutex));
 	}
 	return (NULL);
+}
+
+void	monitoring(t_table *table)
+{
+	int	i;
+	int	death_time;
+
+	i = 0;
+	while (1)
+	{
+		if (i == table->total_philos)
+			i = 0;
+		pthread_mutex_lock(&(table->philosophers[i].death_mutex));
+		death_time = table->philosophers[i].time_of_death;
+		pthread_mutex_unlock(&(table->philosophers[i].death_mutex));
+		if (death_time > 0 && get_current_time_ms() > death_time)
+		{
+			print_end_simulation(table, DEAD_PH, i);
+			break ;
+		}
+		if ((table->meals_count >= 0 && count_fully_fed_philos(table) == table->total_philos) \
+			|| table->meals_count == 0)
+		{
+			print_end_simulation(table, FULL_PH, i);
+			break ;
+		}
+		i ++;
+	}
 }

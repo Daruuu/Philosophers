@@ -26,6 +26,9 @@
 # define EATING "is eating"
 # define SLEEPING "is sleeping"
 # define THINKING "is thinking"
+# define DEAD_PH 1
+# define FULL_PH 2
+# define FULL_PHILOS "Philos are Full\n"
 
 typedef struct s_philo
 {
@@ -50,9 +53,9 @@ typedef struct s_table
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				meals_count;
-	int				simulation_ended;
-	int				philosophers_fed;
-	int				simulation_start_time;
+	int				end_simulation;
+	int				philos_fed_full;
+	int				start_time_simulation;
 	pthread_mutex_t	*forks;
 	struct s_philo	*philosophers;
 	pthread_t		*threads;
@@ -74,8 +77,18 @@ int		get_current_time_ms(void);
 
 //	print.c
 void	print_states_philos(t_philo *philo, char *str_state);
+void	print_end_simulation(t_table *table, int end, int i);
 int		ft_usleep(int milliseconds);
+int		count_fully_fed_philos(t_table *table);
 
 //	routine_philos.c
 void	*routine_philo(void * table_philo);
+void	monitoring(t_table *table);
+
+//	utils.c
+
+int		join_threads(t_table *table);
+void	destroy_mutex(t_table *table);
+void	free_table(t_table *table);
+
 #endif

@@ -36,7 +36,7 @@ void	init_philos(t_table *table)
 		table->philosophers[i].table = table;
 		i ++;
 	}
-	table->simulation_start_time = get_current_time_ms();
+	table->start_time_simulation = get_current_time_ms();
 }
 
 void	init_mutex(t_table *table)
@@ -55,7 +55,6 @@ void	init_mutex(t_table *table)
 }
 
 /**
- *
  * @param table iterate throught table->total_philos
  * and use pthread_create para iterar por N (total_philos) and create
  * @return  true or false
@@ -67,7 +66,7 @@ int	init_threads(t_table *table)
 	i = 0;
 	while (i < table->total_philos)
 	{
-		if (pthread_create(&(table->threads[i]), NULL, routine_philo, \
+		if (pthread_create(&(table->threads[i]), NULL, &routine_philo,
 			&(table->philosophers[i])) != 0)
 			return (1);
 		i ++;
@@ -81,10 +80,11 @@ int	init_table(t_table *table, int ac, char **av)
 	table->time_to_die = ft_atoi(av[2]);
 	table->time_to_eat = ft_atoi(av[3]);
 	table->time_to_sleep = ft_atoi(av[4]);
+	table->meals_count = -1;
 	if (ac == 6)
 		table->meals_count = ft_atoi(av[5]);
-	table->simulation_ended = 0;
-	table->philosophers_fed = 0;
+	table->end_simulation = 0;
+	table->philos_fed_full = 0;
 	table->forks = malloc(table->total_philos * sizeof(pthread_mutex_t));
 	table->philosophers = malloc(table->total_philos * sizeof(t_philo));
 	table->threads = malloc(table->total_philos * sizeof(pthread_t));

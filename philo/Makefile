@@ -12,7 +12,8 @@ SRC = $(SRC_DIR)/main.c \
       $(SRC_DIR)/get_time.c \
       $(SRC_DIR)/init_structs.c \
       $(SRC_DIR)/print.c \
-      $(SRC_DIR)/routine_philos.c
+      $(SRC_DIR)/routine_philos.c \
+      $(SRC_DIR)/utils.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

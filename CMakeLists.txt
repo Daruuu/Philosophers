@@ -13,6 +13,7 @@ add_executable(Philosophers
         philo/src/check_arguments.c
         philo/src/print.c
         philo/src/routine_philos.c
+        philo/src/utils.c
 )
 
 target_compile_options(Philosophers PRIVATE -pthread)
