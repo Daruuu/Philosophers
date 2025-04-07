@@ -79,6 +79,18 @@ void	*routine_philo(void * table_philo)
 	return (NULL);
 }
 
+/**
+ * @brief Monitors the simulation state of the philosophers.
+ *
+ * This function continuously checks two conditions:
+ * 1. If any philosopher has exceeded their time to die without eating.
+ * 2. If all philosophers have eaten the required number of meals.
+ *
+ * When either condition is met, the function prints a termination message
+ * and ends the simulation loop.
+ *
+ * @param table Pointer to the shared simulation table structure.
+ */
 void	monitoring(t_table *table)
 {
 	int	i;

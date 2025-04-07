@@ -16,5 +16,5 @@ add_executable(Philosophers
         philo/src/utils.c
 )
 
-target_compile_options(Philosophers PRIVATE -pthread)
+target_compile_options(Philosophers PRIVATE -lpthread)
 target_link_libraries(Philosophers pthread)

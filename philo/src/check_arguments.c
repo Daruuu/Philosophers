@@ -34,6 +34,17 @@ int	ft_atoi(const char *str)
 	return (sign * (int) result);
 }
 
+/**
+ * @brief Validates the command-line arguments.
+ *
+ * Converts each argument to an integer using `ft_atoi()`
+ * and checks for validity.
+ *
+ * @param ac Number of arguments received.
+ * @param av Array of strings containing the arguments.
+ *
+ * @return int Returns 0 if all arguments are valid, or -1 if at least one is invalid.
+ */
 int	check_valid_args(int ac, char **av)
 {
 	int	i;
@@ -43,13 +54,9 @@ int	check_valid_args(int ac, char **av)
 	while (i < ac)
 	{
 		tmp = (int) ft_atoi(av[i]);
-		if (tmp != -1)
-			i ++;
-		else
-		{
-			printf("Error: invalid input\n");
+		if (tmp <= 0)
 			return (1);
-		}
+		i ++;
 	}
 	return (0);
 }

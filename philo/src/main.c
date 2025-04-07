@@ -29,6 +29,24 @@ void	print_if_no_args(void)
 	printf("5: [optional] number of times each philosopher must eat\n");
 }
 
+/**
+ * @brief Main function of the Philosophers program.
+ *
+ * This function validates the command-line arguments,
+ * initializes the table
+ * with philosophers and forks,
+ * launches the threads and controls the program execution.
+ *
+ * @param ac Number of arguments passed from the command line.
+ * @param av Array of strings containing the arguments:
+ *            - av[1] Number of philosophers
+ *            - av[2] Time to die (in milliseconds)
+ *            - av[3] Time to eat (in milliseconds)
+ *            - av[4] Time to sleep (in milliseconds)
+ *            - av[5] (optional) Number of times each philosopher must eat
+ *
+ * @return int Returns 0 if the program ends successfully, or 1 if an error occurs.
+ */
 int	main(int ac, char **av)
 {
 	t_table		table;
@@ -39,7 +57,10 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	if (check_valid_args(ac, av) == 1)
+	{
 		printf("Error: invalid input(solo integers :(\n");
+		return (1);
+	}
 	if (init_table(&table, ac, av) != 0)
 	{
 		free_table(&table);

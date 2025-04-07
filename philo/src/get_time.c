@@ -9,6 +9,6 @@ int	get_current_time_ms(void)
 	int				milliseconds;
 
 	gettimeofday(&tv, NULL);
-	milliseconds = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	milliseconds = tv.tv_sec * 1000 + (tv.tv_usec / 1000);
 	return (milliseconds);
 }

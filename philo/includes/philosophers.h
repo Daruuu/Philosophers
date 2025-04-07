@@ -29,6 +29,8 @@
 # define DEAD_PH 1
 # define FULL_PH 2
 # define FULL_PHILOS "Philos are Full\n"
+# define NO_MEALS_REQUIRED -1
+
 
 typedef struct s_philo
 {
