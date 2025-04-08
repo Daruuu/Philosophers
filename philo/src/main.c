@@ -6,7 +6,7 @@
 /*   By: dasalaza <dasalaza@student.42barcelona.c>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:59:50 by dasalaza          #+#    #+#             */
-/*   Updated: 2025/03/21 18:09:24 by dasalaza         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:59:07 by dasalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ void	print_if_no_args(void)
  *            - av[4] Time to sleep (in milliseconds)
  *            - av[5] (optional) Number of times each philosopher must eat
  *
- * @return int Returns 0 if the program ends successfully, or 1 if an error occurs.
+ * @return int 0 or 1 if an error occurs.
  */
+
 int	main(int ac, char **av)
 {
-	t_table		table;
+	t_table	table;
 
 	if (ac < 5 || ac > 6)
 	{
@@ -57,10 +58,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	if (check_valid_args(ac, av) == 1)
-	{
-		printf("Error: invalid input(solo integers :(\n");
-		return (1);
-	}
+		return (printf("Error: invalid input(solo integers :(\n"), 1);
 	if (init_table(&table, ac, av) != 0)
 	{
 		free_table(&table);

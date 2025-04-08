@@ -6,7 +6,7 @@
 /*   By: dasalaza <dasalaza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:24:33 by dasalaza          #+#    #+#             */
-/*   Updated: 2025/03/21 19:38:28 by dasalaza         ###   ########.fr       */
+/*   Updated: 2025/04/08 19:15:27 by dasalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <limits.h>
 # include <sys/time.h>
 
+# define YELLOW	"\033[33m"
+# define GREEN	"\033[32m"
+# define BLUE	"\033[34m"
+# define CYAN	"\033[36m"
+# define DEFA	"\033[0m"
+
 # define ONE_PHILO_STR "has taken left fork"
 # define LEFT_FORK_STR "has taken left fork"
 # define RIGHT_FORK_STR "has taken right fork"
@@ -30,7 +36,6 @@
 # define FULL_PH 2
 # define FULL_PHILOS "Philos are Full\n"
 # define NO_MEALS_REQUIRED -1
-
 
 typedef struct s_philo
 {
@@ -84,11 +89,10 @@ int		ft_usleep(int milliseconds);
 int		count_fully_fed_philos(t_table *table);
 
 //	routine_philos.c
-void	*routine_philo(void * table_philo);
+void	*routine_philo(void *table_philo);
 void	monitoring(t_table *table);
 
 //	utils.c
-
 int		join_threads(t_table *table);
 void	destroy_mutex(t_table *table);
 void	free_table(t_table *table);

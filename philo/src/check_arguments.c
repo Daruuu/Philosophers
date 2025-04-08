@@ -1,6 +1,14 @@
-//
-// Created by daruuu on 3/27/25.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_arguments.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dasalaza <dasalaza@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/08 17:56:13 by dasalaza          #+#    #+#             */
+/*   Updated: 2025/04/08 17:57:06 by dasalaza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
@@ -43,7 +51,7 @@ int	ft_atoi(const char *str)
  * @param ac Number of arguments received.
  * @param av Array of strings containing the arguments.
  *
- * @return int Returns 0 if all arguments are valid, or -1 if at least one is invalid.
+ * @return int 0 if all arguments are valid, or -1 if at least one is invalid.
  */
 int	check_valid_args(int ac, char **av)
 {

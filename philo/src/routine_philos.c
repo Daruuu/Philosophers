@@ -1,6 +1,14 @@
-//
-// Created by daruuu on 4/1/25.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine_philos.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dasalaza <dasalaza@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/08 18:19:31 by dasalaza          #+#    #+#             */
+/*   Updated: 2025/04/08 18:27:57 by dasalaza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
@@ -39,20 +47,10 @@ void	eat_philos(t_philo *philo)
 }
 
 /**
- * 1. **Convierte `arg_philo` en un puntero `t_philo`** (contiene datos del filósofo).
- * 2. **Inicializa el tiempo de muerte** al tiempo actual + `death_time`.
- * 3. **Si hay solo un filósofo, termina inmediatamente.**
- * 4. **Si su ID es impar, espera un poco antes de empezar** (para evitar bloqueos iniciales).
- * 5. **Bucle principal (`while (end == 0)`)**
-    - **Come (`eat`)**.
-    - **Duerme (`usleep`)**.
-    - **Piensa (`print_state`)**.
-    - **Verifica si la simulación ha terminado (`end_flg`).
-    Razón:
-    Define el **ciclo de vida de cada filósofo**: comer, dormir y pensar, repitiéndose hasta que la simulación finaliza.
- * @param table_philo
+ * Define el **ciclo de vida de cada filósofo**: comer, dormir y pensar,
+ * repitiéndose hasta que la simulación finaliza.
  */
-void	*routine_philo(void * table_philo)
+void	*routine_philo(void *table_philo)
 {
 	t_philo	*philo;
 	int		end_flag;
@@ -109,7 +107,8 @@ void	monitoring(t_table *table)
 			print_end_simulation(table, DEAD_PH, i);
 			break ;
 		}
-		if ((table->meals_count >= 0 && count_fully_fed_philos(table) == table->total_philos) \
+		if ((table->meals_count >= 0 \
+			&& count_fully_fed_philos(table) == table->total_philos) \
 			|| table->meals_count == 0)
 		{
 			print_end_simulation(table, FULL_PH, i);

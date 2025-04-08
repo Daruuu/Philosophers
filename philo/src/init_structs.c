@@ -6,7 +6,7 @@
 /*   By: dasalaza <dasalaza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 13:12:41 by dasalaza          #+#    #+#             */
-/*   Updated: 2025/03/21 21:12:39 by dasalaza         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:57:41 by dasalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	init_philos(t_table *table)
 		table->philosophers[i].time_of_death = NO_MEALS_REQUIRED;
 		table->philosophers[i].fork_left = &(table->forks[i]);
 		if (i == 0)
-			table->philosophers[i].fork_right = &(table->forks[table->total_philos - 1]);
+			table->philosophers[i].fork_right = \
+			&(table->forks[table->total_philos - 1]);
 		else
 			table->philosophers[i].fork_right = &(table->forks[i - 1]);
 		pthread_mutex_init(&(table->philosophers[i].death_mutex), NULL);
