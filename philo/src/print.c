@@ -58,8 +58,8 @@ void	print_end_simulation(t_table *table, int end, int i)
 	table->end_simulation = 1;
 	if (end == DEAD_PH)
 	{
-		printf("\033[31m%i %i died\033[0m\n",
-			get_current_time_ms() - table->start_time_simulation,
+		printf("\033[31m%i %i died\033[0m\n", \
+			get_current_time_ms() - table->start_time_simulation, \
 			table->philosophers[i].id);
 	}
 	if (end == FULL_PH)
