@@ -1,7 +1,7 @@
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=thread -pthread
-CFLAGS = -Wall -Wextra -Werror -lpthread #-g -fsanitize=thread
+#CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=thread -pthread
+CFLAGS = -Wall -Wextra -Werror -lpthread -g -fsanitize=thread
 
 RM = rm -rf
 OBJ_DIR = obj
@@ -27,7 +27,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(NAME): $(OBJ) Makefile
+$(NAME): $(OBJ) Makefile $(INCLUDE_DIR)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
