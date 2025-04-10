@@ -1,7 +1,7 @@
 NAME = philo
 CC = cc
-#CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=thread -pthread
-CFLAGS = -Wall -Wextra -Werror -lpthread #-g -fsanitize=thread -lpthread
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+# CFLAGS = -Wall -Wextra -Werror -lpthread -g -fsanitize=thread
 
 RM = rm -rf
 OBJ_DIR = obj
